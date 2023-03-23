@@ -20,6 +20,9 @@ module.exports = {
       secondary: {
         DEFAULT: '#E2DAC6',
       },
+      tertiary: {
+        DEFAULT: '#3B2721',
+      },
     },
     spacing: {
       0: '0',
@@ -34,7 +37,7 @@ module.exports = {
       ...remPair(12),
       ...remPair(14),
       ...remPair(16),
-      ...remPair(18),
+      ...remPair(20),
       ...remPair(24),
       ...remPair(28),
       ...remPair(32),
@@ -43,6 +46,22 @@ module.exports = {
       ...remPair(44),
       ...remPair(48),
       ...remPair(56),
+      ...remPair(56),
+      ...remPair(64),
+      ...remPair(72),
+    },
+    borderRadius: {
+      none: '0',
+      DEFAULT: rem(10),
+    },
+    extend: {
+      minHeight: ({ theme }) => ({
+        ...theme('spacing'),
+      }),
     },
   },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('./config/tailwind/wrapper.js'),
+  ],
 }

@@ -1,3 +1,25 @@
-<h1 class="text-3xl font-bounce">
-  PointlessAi!
-</h1>
+
+<div class="flex flex-col min-h-screen bg-tertiary">
+  <header>
+    <%# TODO: prettify %>
+    <h1 class="text-3xl font-bounce text-secondary">
+      PointlessAi
+    </h1>
+  </header>
+  <main class="mt-auto wrapper">
+
+    <%# User input %>
+    <form action="">
+      <label class="relative flex items-center justify-between w-full text-white rounded h-72 bg-primary">
+        <input type="text" class="w-full h-full pl-20 pr-64 text-2xl bg-transparent border-0 rounded focus:outline-transparent focus:ring-2 focus:ring-primary-hover focus:ring-offset-4 focus:ring-offset-tertiary placeholder:text-white/50" placeholder="Ask Pointy Something...">
+        <button type="submit" class="absolute mr-8 text-2xl -translate-y-4 bg-transparent cursor-pointer right-8 drop-shadow-lg" aria-hidden="true" tabindex="-1">
+          🍯
+        </button>
+      </label>
+    </form>
+  </main>
+  <footer class="py-32 wrapper">
+    <%# TODO: prettify %>
+    <p class="text-center text-white">A <strong>Pointless Corp.</strong> Production</p>
+  </footer>
+</div>
