@@ -1,3 +1,8 @@
 <h1 class="text-3xl">
   PointlessAi!
 </h1>
+
+<%= form_with scope: "honey", url: prompt_path, method: :put do |form| %>  
+  <%= form.text_field :title %>  
+  <%= form.submit "Create" %>  
+<% end %>  
