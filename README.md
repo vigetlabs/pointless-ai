@@ -9,6 +9,12 @@ docker-compose build
 docker-compose up
 ```
 
+### Seeding
+
+```
+rake db:seed
+```
+
 ### Testing
 
 We use [rspec-rails](https://github.com/rspec/rspec-rails) and [factory-bot](https://github.com/thoughtbot/factory_bot)
