@@ -13,6 +13,7 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       white: '#ffffff',
+      black: '#181818',
       primary: {
         DEFAULT: '#994930',
         hover: '#7A3A2B',
@@ -57,6 +58,7 @@ module.exports = {
     },
     borderRadius: {
       none: '0',
+      full: '9999px',
       DEFAULT: rem(10),
     },
     extend: {
@@ -70,39 +72,48 @@ module.exports = {
       },
       keyframes: {
         'font-bounce': {
-          'from': { 'font-variation-settings': '"ital" 0, "INFM" 0,"BNCE" -50, "SPAC" 0' },
-          'to': { 'font-variation-settings': '"ital" 0, "INFM" 0,"BNCE" 50, "SPAC" 0' }
+          from: {
+            'font-variation-settings':
+              '"ital" 0, "INFM" 0,"BNCE" -50, "SPAC" 0',
+          },
+          to: {
+            'font-variation-settings': '"ital" 0, "INFM" 0,"BNCE" 50, "SPAC" 0',
+          },
         },
       },
       backgroundImage: {
         hatching: "url('hatching.webp')",
       },
       backgroundSize: {
-        '500': '500px'
-      }
+        500: '500px',
+      },
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('./config/tailwind/wrapper.js'),
-    plugin(function({ addUtilities }) {
+    require('./config/tailwind/scrollbar.js'),
+    plugin(function ({ addUtilities }) {
       addUtilities({
         '.font-var-base': {
           'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 100, "SPAC" 0',
         },
         '.font-var-bounce': {
-          'font-variation-settings': '"ital" 100, "INFM" 0, "BNCE" 100, "SPAC" 0',
+          'font-variation-settings':
+            '"ital" 100, "INFM" 0, "BNCE" 100, "SPAC" 0',
         },
         '.font-var-italic': {
-          'font-variation-settings': '"ital" 100, "INFM" 0, "BNCE" 50, "SPAC" 0',
+          'font-variation-settings':
+            '"ital" 100, "INFM" 0, "BNCE" 50, "SPAC" 0',
         },
         '.font-var-informal': {
-          'font-variation-settings': '"ital" 0, "INFM" 100, "BNCE" 50, "SPAC" 0',
+          'font-variation-settings':
+            '"ital" 0, "INFM" 100, "BNCE" 50, "SPAC" 0',
         },
         '.font-var-formal': {
           'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 0, "SPAC" 0',
         },
       })
-    })
+    }),
   ],
 }
