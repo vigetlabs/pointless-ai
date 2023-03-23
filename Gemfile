@@ -35,7 +35,8 @@ group :development, :test do
 
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem "pry-rails"
+  gem "pry-rails" # Debugger
+  gem "standard"  # Ruby Formatting
 end
 
 group :development do
