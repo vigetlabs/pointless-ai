@@ -23,6 +23,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@viget/tailwindcss-plugins@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@viget/tailwindcss-plugins/-/tailwindcss-plugins-3.0.0.tgz#3d188ed3e8a90ee2b52017c0a7918d9f210175be"
+  integrity sha512-1kiwydmVd3KwfSCfWeaxbuPr2iHy85+BWkZo+2B2+tTDqHVJx7Bm7FArcBE3aenTrlfRjTeYL++rMDAS0EE3bw==
+
 acorn-node@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/acorn-node/-/acorn-node-1.8.2.tgz#114c95d64539e53dede23de8b9d96df7c7ae2af8"
