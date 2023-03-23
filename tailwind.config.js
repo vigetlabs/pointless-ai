@@ -96,7 +96,7 @@ module.exports = {
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.font-var-base': {
-          'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 100, "SPAC" 0',
+          'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 50, "SPAC" 0',
         },
         '.font-var-bounce': {
           'font-variation-settings':
