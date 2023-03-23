@@ -1,9 +1,9 @@
 @font-face {
-	font-family: 'ShantellSans';
-	font-weight: 1 1000;
-	font-style: normal italic;
-	src: url('ShantellSans.woff2') format('woff2');
-	font-display: block;
+  font-family: 'ShantellSans';
+  font-weight: 1 1000;
+  font-style: normal italic;
+  src: url('ShantellSans.woff2') format('woff2');
+  font-display: block;
 }
 
 @tailwind base;
