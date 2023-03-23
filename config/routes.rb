@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+  post 'messages/create', to: 'messages#create'
+  post 'messages/reset', to: 'messages#reset'
 end
