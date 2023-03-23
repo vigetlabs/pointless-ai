@@ -1,16 +1,9 @@
 # Pointless AI
 
-### Tech Stack
 
-Rails 7
-
-### Getting started
+### Set up via Docker
 
 ```
-bundle install
-rake db:create
-rails s
+docker-compose build
+docker-compose up
 ```
-
-TODO: 
--[ ] Dockerize

@@ -1,0 +1,50 @@
+---
+version: '3.2'
+
+services:
+  postgres:
+    image: postgres:14.7
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./.docker/db:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_USER: pointlessai
+      POSTGRES_PASSWORD: pointlessai
+      POSTGRES_DB: pointlessai_development
+    ports:
+      - 5432:5432
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./.docker/backend/Dockerfile
+    entrypoint: ./.docker/backend/entrypoint.sh
+    command: ./bin/rails server -p 3000 -b '0.0.0.0'
+    working_dir: /app
+    volumes:
+      - .:/app
+      - gems:/usr/local/bundle
+      - yarn:/app/node_modules
+      - log:/app/log
+      - tmp:/app/tmp
+      - uploads:/app/public/system
+      - type: bind
+        source: /run/host-services/ssh-auth.sock
+        target: /run/host-services/ssh-auth.sock
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=postgres
+      - DB_PASSWORD=pointlessai
+      - DB_USER=pointlessai
+      - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
+    depends_on:
+      - postgres
+
+volumes:
+  db-data:
+  gems:
+  log:
+  tmp:
+  uploads:
+  yarn:

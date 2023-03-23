@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch('DB_USER', nil) %>
+  password: <%= ENV.fetch('DB_PASSWORD', nil) %>
+  host: <%= ENV.fetch('DB_HOST', nil) %>
+
+development:
+  <<: *default
+  database: pointlessai_development
+
+test:
+  <<: *default
+  database: pointlessai_test
