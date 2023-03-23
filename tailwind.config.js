@@ -24,6 +24,10 @@ module.exports = {
         DEFAULT: '#3B2721',
       },
     },
+    fontFamily: {
+      inherit: 'inherit',
+      body: ['ShantellSans', 'Comic Sans', 'sans-serif'],
+    },
     spacing: {
       0: '0',
       ...remPair(1),
@@ -58,6 +62,17 @@ module.exports = {
       minHeight: ({ theme }) => ({
         ...theme('spacing'),
       }),
+    },
+    extend: {
+      animation: {
+        'font-bounce': 'font-bounce 2000ms alternate ease-in-out infinite',
+      },
+      keyframes: {
+        'font-bounce': {
+          'from': { 'font-variation-settings': '"ital" 0, "INFM" 0,"BNCE" -50, "SPAC" 0' },
+          'to': { 'font-variation-settings': '"ital" 0, "INFM" 0,"BNCE" 50, "SPAC" 0' }
+        },
+      },
     },
   },
   plugins: [
