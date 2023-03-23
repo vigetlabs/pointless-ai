@@ -1,4 +1,5 @@
 const { remPair, rem } = require('@viget/tailwindcss-plugins/utilities/fns')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: [
@@ -73,10 +74,35 @@ module.exports = {
           'to': { 'font-variation-settings': '"ital" 0, "INFM" 0,"BNCE" 50, "SPAC" 0' }
         },
       },
+      backgroundImage: {
+        hatching: "url('hatching.webp')",
+      },
+      backgroundSize: {
+        '500': '500px'
+      }
     },
   },
   plugins: [
     require('@tailwindcss/forms'),
     require('./config/tailwind/wrapper.js'),
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.font-var-base': {
+          'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 100, "SPAC" 0',
+        },
+        '.font-var-bounce': {
+          'font-variation-settings': '"ital" 100, "INFM" 0, "BNCE" 100, "SPAC" 0',
+        },
+        '.font-var-italic': {
+          'font-variation-settings': '"ital" 100, "INFM" 0, "BNCE" 50, "SPAC" 0',
+        },
+        '.font-var-informal': {
+          'font-variation-settings': '"ital" 0, "INFM" 100, "BNCE" 50, "SPAC" 0',
+        },
+        '.font-var-formal': {
+          'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 0, "SPAC" 0',
+        },
+      })
+    })
   ],
 }
