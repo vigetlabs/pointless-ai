@@ -10,41 +10,44 @@
 
   <%# Threaded Conversation %>
   <main class="flex flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[196px] pt-72">
-    <%# User Convo Box %>
-    <div class="w-full py-36">
-      <div class="flex gap-24 wrapper">
-        <%# avatar %>
-        <div class="w-40 h-40 rounded-full bg-secondary shrink-0"></div>
-        <%# message %>
-        <div class="break-words markdown">
-          <p>Est voluptate amet laborum amet excepteur laboris eiusmod aliqua.</p>
-        </div>
-      </div>
-    </div>
 
-    <%# AI Convo Box %>
-    <div class="w-full bg-black/40 py-36">
-      <div class="flex gap-24 wrapper">
-        <%# avatar %>
-        <div class="w-40 h-40 bg-white rounded-full shrink-0"></div>
-        <%# message %>
-        <div class="break-words markdown">
-          <p>[🍯Honeyed-up!] I got my honey from a nearby honey farm! As a bear with a love for honey, I'm always on the lookout for sources of delicious, sweet honey to satisfy my cravings. Luckily, there are many beekeepers and honey farms around the world that produce high-quality honey for bears and humans alike.</p>
-        </div>
-      </div>
-    </div>
+    <%= turbo_frame_tag "messages_frame" do %>
+      <% messages.each do |val| -%>
+        <%# User Convo Box %>
+        <%= tag.div 'data-controller': 'message', 'hidden': val === messages.last, 'data-message-animate-value': val === messages.last do %>
+          <div class="w-full py-36">
+            <div class="flex gap-24 wrapper">
+              <%# TODO make avatar dynamic %>
+              <%# avatar %>
+              <div class="w-40 h-40 rounded-full bg-secondary shrink-0"></div>
+              <%# message %>
+              <div class="break-words markdown">
+                <div data-message-target="text"><%= val %></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
   </main>
 
   <%# User input %>
   <footer class="absolute bottom-0 w-full bg-gradient-to-b from-tertiary/0 via-tertiary/90 to-tertiary/90">
-    <form action="" class="wrapper mt-36">
+
+  <%= form_with url: "/messages/reset", data: {'turbo-frame': 'messages'} do |form| %>
+  <div class="flex justify-center">
+    <button class="text-white">Clear Session</button>
+  </div>
+  <% end %>
+
+    <%= form_with url: "/messages/create", data: {'turbo-frame': 'messages_frame'}, class: 'wrapper mt-36' do |form| %>
       <label class="relative flex items-center justify-between w-full text-white rounded h-72 bg-primary">
-        <input type="text" class="w-full h-full pl-20 pr-64 text-2xl bg-transparent border-0 rounded focus:outline-transparent focus:ring-2 focus:ring-primary-hover focus:ring-offset-4 focus:ring-offset-tertiary placeholder:text-white/50" placeholder="Type your question">
+        <input name="message" type="text" class="w-full h-full pl-20 pr-64 text-2xl bg-transparent border-0 rounded focus:outline-transparent focus:ring-2 focus:ring-primary-hover focus:ring-offset-4 focus:ring-offset-tertiary placeholder:text-white/50" placeholder="Type your question">
         <button type="submit" class="absolute mr-8 text-2xl -translate-y-4 bg-transparent cursor-pointer right-8 drop-shadow-lg" aria-hidden="true" tabindex="-1">
           🍯
         </button>
       </label>
-    </form>
+    <% end %>
     <div class="py-32 wrapper">
       <%# TODO: prettify %>
       <p class="text-center text-white">A <strong>Pointless Corp.</strong> Production</p>
