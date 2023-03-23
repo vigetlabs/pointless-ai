@@ -6,11 +6,10 @@
 	font-display: block;
 }
 
-body {
-  font-family: 'ShantellSans', 'Comic Sans', sans-serif;
-  font-variation-settings: "ital" 0, "INFM" 0,"BNCE" 50, "SPAC" 0;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply font-body bg-tertiary bg-hatching bg-repeat bg-500 font-var-base;
+}
