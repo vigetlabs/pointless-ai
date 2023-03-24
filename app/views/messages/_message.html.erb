@@ -10,7 +10,18 @@
       <div class="break-words markdown">
         <div data-message-target="text"><%= message.content %></div>
       </div>
+    </div>
+  </div>
+<% end %>
 
+<%= tag.div 'data-controller': 'message', 'hidden': false, 'data-message-animate-value': false do %>
+  <%# TODO bg-black/40 WHEN BEAR RESPONSE %>
+  <div class="w-full py-36">
+    <div class="flex gap-24 wrapper">
+      <%# TODO make avatar dynamic %>
+      <%# avatar %>
+      <div class="w-40 h-40 rounded-full bg-secondary shrink-0"></div>
+      <%# message %>
       <div class="break-words markdown">
         <div data-message-target="text"><%= message.assistant_reply %></div>
       </div>
