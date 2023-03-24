@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     messages = session[:messages] || []
     render "home/index", locals: {messages: messages}

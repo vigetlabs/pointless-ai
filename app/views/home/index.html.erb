@@ -6,6 +6,14 @@
       PointyAI
     </h1>
     <%= render 'honey' %>
+
+    <div class="flex justify-end">
+      <div class="flex text-3xl font-black animate-font-bounce text-secondary">
+        <% if current_user %>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <% end %>
+      </div>
+    </div>
   </header>
 
   <%# Threaded Conversation %>
