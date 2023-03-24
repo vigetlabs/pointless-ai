@@ -1,5 +1,5 @@
 <%# User Convo Box %>
-<%= tag.div 'data-controller': 'message', 'hidden': false, 'data-message-animate-value': false do %>
+<%= tag.div 'data-controller': 'message', 'hidden': false, 'data-message-animate-value': false, 'data-scroll-to-bottom-target': 'message' do %>
   <%# TODO bg-black/40 WHEN BEAR RESPONSE %>
   <div class="w-full py-36">
     <div class="flex gap-24 wrapper">
@@ -14,7 +14,7 @@
   </div>
 <% end %>
 
-<%= tag.div 'data-controller': 'message', 'hidden': false, 'data-message-animate-value': true do %>
+<%= tag.div 'data-controller': 'message', 'hidden': false, 'data-message-animate-value': true, 'data-scroll-to-bottom-target': 'message' do %>
   <%# TODO bg-black/40 WHEN BEAR RESPONSE %>
   <div class="w-full py-36">
     <div class="flex gap-24 wrapper">

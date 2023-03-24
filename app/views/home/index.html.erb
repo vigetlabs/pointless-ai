@@ -17,7 +17,7 @@
   </header>
 
   <%# Threaded Conversation %>
-  <main class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[196px]">
+  <main data-controller="scroll-to-bottom" class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[196px]">
     <div id="splash">
       <% if messages.empty? %>
         <%= render partial: "splash" %>
