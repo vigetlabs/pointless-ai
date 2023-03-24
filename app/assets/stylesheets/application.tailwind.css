@@ -10,6 +10,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply font-body bg-tertiary bg-hatching bg-repeat bg-500 font-var-base;
+@layer base {
+  :root {
+    --honey-supply: 0;
+  }
+
+  body {
+    @apply font-body bg-tertiary bg-hatching bg-repeat bg-500 font-var-base;
+  }
 }
