@@ -7,8 +7,8 @@ class MessagesController < ApplicationController
 
       respond_to do |format|
         if @message.valid? && @message.save
-          PointyBearClient.submit_prompt(@message, message_thread.historical_message_contents)
-          # @message.update(assistant_reply: "This is a test reply from the assistant")
+          # PointyBearClient.submit_prompt(@message, message_thread.historical_message_contents)
+          @message.update(assistant_reply: "This is a test reply from the assistant")
 
           format.turbo_stream
           format.html { redirect_to messages_url, notice: "Message was successfully created." }
@@ -25,9 +25,10 @@ class MessagesController < ApplicationController
     end
   end
 
-  def reset
+  def destroy
     # Reset our session and redirect to home
-    session[:messages] = []
+    # session[:messages] = []
+    message_thread.messages.destroy_all
     respond_to do |format|
       format.html { redirect_to "/" }
     end

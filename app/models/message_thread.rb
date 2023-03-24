@@ -22,6 +22,6 @@ class MessageThread < ApplicationRecord
   end
 
   def at_limit?
-    messages.count >= 3
+    messages.count >= 10
   end
 end
