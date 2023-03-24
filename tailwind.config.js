@@ -13,7 +13,10 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
       white: '#ffffff',
-      black: '#181818',
+      black: {
+        DEFAULT: '#181818',
+        overlay: 'rgb(18 18 18 / 0.4)',
+      },
       primary: {
         DEFAULT: '#994930',
         hover: '#7A3A2B',
@@ -71,6 +74,7 @@ module.exports = {
         'font-bounce': 'font-bounce 2000ms alternate ease-in-out infinite',
         'honey-dance': 'honey-dance 1500ms steps(2) 0s infinite',
         'honey-bounce': 'honey-bounce 400ms linear infinite',
+        'vibrate': 'vibrate 250ms linear infinite',
       },
       keyframes: {
         'font-bounce': {
@@ -116,6 +120,14 @@ module.exports = {
             transform: 'scale(1.2)',
           },
         },
+        'vibrate': {
+          '0%': { transform: 'translate(0)' },
+          '20%': { transform: 'translate(-1px, 1px)' },
+          '40%': { transform: 'translate(-1px, -1px)' },
+          '60%': { transform: 'translate(1px, 1px)' },
+          '80%': { transform: 'translate(1px, -1px)' },
+          '100%': { transform: 'translate(0)' }
+        }
       },
       backgroundImage: {
         hatching: "url('hatching.webp')",
