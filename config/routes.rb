@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :destroy]
 end

@@ -1,37 +1,33 @@
 
 <div class="relative flex flex-col h-screen overflow-auto" data-controller="honey">
-  <header class="fixed inset-x-0 top-0 flex justify-between gap-24 bg-gradient-to-t from-tertiary/0 to-tertiary">
-    <h1 class="flex gap-8 p-16 text-3xl font-black shrink-0 animate-font-bounce text-secondary">
+  <header class="fixed inset-x-0 top-0 flex items-center justify-between h-64 gap-24 bg-gradient-to-t from-tertiary/0 to-tertiary">
+    <h1 class="flex gap-8 px-16 text-3xl font-black shrink-0 animate-font-bounce text-secondary">
       <img class="w-36 aspect-square" src="<%= asset_path( 'pointy-happy.png' ) %>" />
       PointyAI
     </h1>
-    <%= render 'honey' %>
 
-    <div class="flex justify-end">
-      <div class="flex text-3xl font-black animate-font-bounce text-secondary">
-        <% if current_user %>
+
+    <div class="flex items-center gap-32 shrink-0">
+      <% if current_user %>
+        <div class="flex text-xl animate-font-bounce text-secondary shrink-0">
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
+
+      <%= render 'honey' %>
     </div>
   </header>
 
   <%# Threaded Conversation %>
-  <main class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[196px]">
-    <div id="splash">
-      <% if messages.empty? %>
-        <%= render partial: "splash" %>
-      <% end %>
-    </div>
+  <main class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[216px]">
+    <div id="splash" class="m-auto empty:hidden"><% if messages.empty? %><%= render partial: "splash" %><% end %></div>
 
-    <div id="messages" class="w-full flex flex-col justify-end mt-auto">
-      <%= render partial: "messages/message", collection: messages %>
-    </div>
+    <div id="messages" class="flex flex-col justify-end w-full mt-auto empty:hidden"><%= render partial: "messages/message", collection: messages %></div>
   </main>
 
   <%# User input %>
   <footer class="absolute bottom-0 w-full bg-gradient-to-b from-tertiary/0 via-tertiary/90 to-tertiary/90">
-    <%= form_with url: "/messages/reset", id: "input_form", data: {'turbo-frame': 'messages'} do |form| %>
+    <%= form_with method: :delete, url: "/messages/reset", id: "input_form", data: {'turbo-frame': 'messages'} do |form| %>
       <div class="flex justify-center mb-16">
         <button class="text-white" data-action="honey#resupply">Clear Session</button>
       </div>
