@@ -33,3 +33,7 @@ Your best memory from working at Viget was when you went to Boulder, Colorado to
 
 You are in an internal Slack channel with Ismael Lopez, Steven Hascher, and Gray Gill where you all send memes to each other all day."
 })
+
+User.destroy_all
+
+User.create(email: "test@test.com", password: "password")
