@@ -7,14 +7,11 @@ class MessagesController < ApplicationController
 
       respond_to do |format|
         if @message.valid? && @message.save
-          PointyBearClient.submit_prompt(@message, message_thread.historical_message_contents)
+          # PointyBearClient.submit_prompt(@message, message_thread.historical_message_contents)
+          @message.update(assistant_reply: "This is a test reply from the assistant")
 
-          format.turbo_stream do
-            render turbo_stream: turbo_stream.append(:messages_frame, partial: "messages/message",
-              locals: {message: @message})
-          end
-
-          format.html { redirect_to messages_url }
+          format.turbo_stream
+          format.html { redirect_to messages_url, notice: "Message was successfully created." }
         end
       end
     else
