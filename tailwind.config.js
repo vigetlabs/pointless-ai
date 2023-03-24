@@ -69,6 +69,8 @@ module.exports = {
     extend: {
       animation: {
         'font-bounce': 'font-bounce 2000ms alternate ease-in-out infinite',
+        'honey-dance': 'honey-dance 1500ms steps(2) 0s infinite',
+        'honey-bounce': 'honey-bounce 400ms linear infinite',
       },
       keyframes: {
         'font-bounce': {
@@ -78,6 +80,40 @@ module.exports = {
           },
           to: {
             'font-variation-settings': '"ital" 0, "INFM" 0,"BNCE" 50, "SPAC" 0',
+          },
+        },
+        'honey-dance': {
+          from: {
+            transform: 'rotate(10deg)',
+          },
+          to: {
+            transform: 'rotate(-20deg)',
+          },
+        },
+        'honey-bounce': {
+          '0%': {
+            transform: 'scale(1)',
+          },
+          '30%': {
+            transform: 'scale(1.282)',
+          },
+          '40%': {
+            transform: 'scale(1.14)',
+          },
+          '65%': {
+            transform: 'scale(1.222)',
+          },
+          '80%': {
+            transform: 'scale(1.19)',
+          },
+          '88%': {
+            transform: 'scale(1.2)',
+          },
+          '88%': {
+            transform: 'scale(1.2)',
+          },
+          '100%': {
+            transform: 'scale(1.2)',
           },
         },
       },
@@ -93,7 +129,7 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('./config/tailwind/wrapper.js'),
     require('./config/tailwind/scrollbar.js'),
-    plugin(function ({ addUtilities }) {
+    plugin(({ addUtilities }) => {
       addUtilities({
         '.font-var-base': {
           'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 50, "SPAC" 0',
@@ -114,6 +150,9 @@ module.exports = {
           'font-variation-settings': '"ital" 0, "INFM" 0, "BNCE" 0, "SPAC" 0',
         },
       })
+    }),
+    plugin(({ addVariant }) => {
+      addVariant('bounce', '&[data-state="bounce"]')
     }),
   ],
 }
