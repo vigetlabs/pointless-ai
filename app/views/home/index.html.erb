@@ -18,33 +18,25 @@
 
   <%# Threaded Conversation %>
   <main class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[196px]">
-    <%= turbo_frame_tag "messages_frame", class:"w-full flex flex-col justify-end mt-auto" do %>
-      <% if !messages.empty? %>
-        <%= render partial: "messages/message", collection: messages %>
-      <% else %>
-        <%# Welcome Splash %>
-        <div class="flex flex-col items-center w-full gap-24 pb-32 mb-auto text-center pt-72 wrapper min-h-[calc(100vh-196px)]">
-          <img class="max-w-[252px] w-full" src="<%= asset_path( 'pointy-bike.png' ) %>" />
-          <h2 class="text-4xl font-bold lg:text-6xl ">Welcome to PointyAI</h2>
-          <h3 class="text-xl lg:text-3xl">You can ask me anything (especially if it relates to honey)</h3>
-        </div>
+    <div id="splash">
+      <% if messages.empty? %>
+        <%= render partial: "splash" %>
       <% end %>
-    <% end %>
+    </div>
+
+    <div id="messages" class="w-full flex flex-col justify-end mt-auto">
+      <%= render partial: "messages/message", collection: messages %>
+    </div>
   </main>
 
   <%# User input %>
   <footer class="absolute bottom-0 w-full bg-gradient-to-b from-tertiary/0 via-tertiary/90 to-tertiary/90">
-    <%= form_with url: "/messages/reset", data: {'turbo-frame': 'messages'} do |form| %>
+    <%= form_with url: "/messages/reset", id: "input_form", data: {'turbo-frame': 'messages'} do |form| %>
       <div class="flex justify-center mb-16">
         <button class="text-white" data-action="honey#resupply">Clear Session</button>
       </div>
     <% end %>
 
-  <%= form_with url: "/messages/reset", data: {'turbo-frame': 'messages'} do |form| %>
-  <div class="flex justify-center">
-    <button class="text-white">Clear Session</button>
-  </div>
-  <% end %>
     <%= render "form" %>
 
     <div class="py-32 wrapper">

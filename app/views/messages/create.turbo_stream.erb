@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "splash" do %>
+  <div></div>
+<% end %>
+
+<%= turbo_stream.append "messages" do %>
+  <%= render "messages/message", message: @message %>
+<% end %>
