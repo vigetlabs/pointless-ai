@@ -32,7 +32,7 @@ export default class extends Controller {
 
     new Typed(this.textTarget, {
       strings: [html],
-      typeSpeed: 50,
+      typeSpeed: 15,
       showCursor: false,
     })
   }

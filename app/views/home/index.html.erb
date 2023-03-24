@@ -15,14 +15,27 @@
         <% messages.each do |val| -%>
           <%# User Convo Box %>
           <%= tag.div 'data-controller': 'message', 'hidden': val === messages.last, 'data-message-animate-value': val === messages.last do %>
-            <%# TODO bg-black/40 WHEN BEAR RESPONSE %>
-            <div class="w-full py-36">
+            <%# TODO: connect isPointy to responses %>
+            <% isPointy = false %>
+            <% honeyMeter = 4 %>
+
+            <div class="w-full py-36 <%= 'bg-black-overlay' if isPointy %>">
               <div class="flex gap-24 wrapper">
-                <%# TODO make avatar dynamic %>
                 <%# avatar %>
-                <div class="w-40 h-40 rounded-full bg-secondary shrink-0"></div>
+                <div class="w-48 h-48 shrink-0">
+                  <% if isPointy and honeyMeter = 0 %>
+                    <%# pointy with honey %>
+                    <img class="w-full aspect-square animate-vibrate" src="<%= asset_path( 'pointy-angry.png' ) %>" />
+                  <% elsif isPointy and honeyMeter > 0 %>
+                    <%# pointy no honey %>
+                    <img class="w-full aspect-square" src="<%= asset_path( 'pointy-happy.png' ) %>" />
+                  <% else %>
+                    <%# user %>
+                    <img class="w-full aspect-square" src="<%= asset_path( 'user.png' ) %>" />
+                  <% end %>
+                </div>
                 <%# message %>
-                <div class="break-words markdown">
+                <div class="break-words markdown mt-6">
                   <div data-message-target="text"><%= val %></div>
                 </div>
               </div>
