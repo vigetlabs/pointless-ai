@@ -10,7 +10,7 @@
 
   <%# Threaded Conversation %>
   <main class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[196px] pt-72">
-    <%= turbo_frame_tag "messages_frame", class:"w-full" do %>
+    <%= turbo_frame_tag "messages_frame", class:"w-full flex flex-col h-full justify-end" do %>
       <% if !messages.empty? %>
         <% messages.each do |val| -%>
           <%# User Convo Box %>
@@ -31,7 +31,7 @@
         <% end %>
       <% else %>
         <%# Welcome Splash %>
-        <div class="flex flex-col items-center w-full gap-24 text-center mt-72 wrapper">
+        <div class="flex flex-col items-center w-full gap-24 pb-32 mt-24 mb-auto text-center wrapper">
           <img class="max-w-[252px] w-full" src="<%= asset_path( 'pointy-bike.png' ) %>" />
           <h2 class="text-4xl font-bold lg:text-6xl ">Welcome to PointyAI</h2>
           <h3 class="text-xl lg:text-3xl">You can ask me anything (especially if it relates to honey)</h3>
@@ -44,12 +44,12 @@
   <footer class="absolute bottom-0 w-full bg-gradient-to-b from-tertiary/0 via-tertiary/90 to-tertiary/90">
 
   <%= form_with url: "/messages/reset", data: {'turbo-frame': 'messages'} do |form| %>
-  <div class="flex justify-center">
+  <div class="flex justify-center mb-16">
     <button class="text-white">Clear Session</button>
   </div>
   <% end %>
 
-    <%= form_with url: "/messages/create", data: {'turbo-frame': 'messages_frame'}, class: 'wrapper mt-36' do |form| %>
+    <%= form_with url: "/messages/create", data: {'turbo-frame': 'messages_frame'}, class: 'wrapper' do |form| %>
       <label class="relative flex items-center justify-between w-full text-white rounded h-72 bg-primary">
         <input name="message" type="text" class="w-full h-full pl-20 pr-64 text-2xl bg-transparent border-0 rounded focus:outline-transparent focus:ring-2 focus:ring-primary-hover focus:ring-offset-4 focus:ring-offset-tertiary placeholder:text-white/50" placeholder="Type your question">
         <button type="submit" class="absolute mr-8 text-4xl -translate-y-4 bg-transparent cursor-pointer right-8 drop-shadow-lg" aria-hidden="true" tabindex="-1">
