@@ -9,9 +9,19 @@ class MessageThread < ApplicationRecord
   end
 
   def generate_assistant_reply
-    historical_message_contents = messages.order(created_at: :desc).pluck(:content)  # ["", ""]
+  end
 
+  def historical_message_contents
+    hisotircal_messages = messages.where.not(assistant_reply: nil).order(created_at: :desc).pluck(:content, :assistant_reply)
+    hisotircal_messages.map do |content, assistant_reply|
+      [
+        {role: "user", content: content},
+        {role: "system", content: assistant_reply}
+      ]
+    end.flatten.compact
+  end
 
-    PointyBearClient.submit_prompt
+  def at_limit?
+    messages.count >= 3
   end
 end
