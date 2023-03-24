@@ -12,10 +12,13 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+  <body class="scrollbar-default">
+    <% if notice or alert %>
+      <div class="fixed top-0 right-0 z-50 max-w-md p-16 m-24 transition-opacity duration-300 rounded bg-secondary text-primary ring-2 ring-primary" data-controller="toast">
+        <p class="notice empty:hidden"><%= notice %></p>
+        <p class="alert empty:hidden"><%= alert %></p>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
