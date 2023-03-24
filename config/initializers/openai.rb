@@ -2,6 +2,6 @@ require "openai"
 
 OpenAI.configure do |config|
   # Follow the README under "Adding credentials" to add your own API key here
-  config.access_token = 'GDJpMyOz9FRtzu5fHc0CNX1fb0Q1lCtOEZNEojWwvO3lphVzHtmu2H6hEx3QMqZNLegI2sebiNOpw/Q0wHGTUu6jeTKTOrOSvOpwdyWQZcqeWbjbjel5vYTTt0QhCuLnhx8WVGCjhPHwwvFRExYkZjzY2HoNyfY+hTouylMxc6lxc/vpkiBwgSbILt4NJXfY0TWdfIhuPyCoQLh5JowvKSzW/aHFAHmoK1MpFuVqBIu20cGB//JeUoWczD+p38RmMcNAUspLXNvKClzvFq+Es49L77Qok/J5cjw2NFFc+46Ux27FRtJN5VBENcDRRu/IxWt2yxjN7EjXOVEq+XR/2DZiQcJx7RpfTY7lixDE3HYLUfIcajjovTACl0ClqqbwXH1ba5GqnY2Xd8Wbs0BOnCL5qbIyI1xJatz0h2TiyMYozLZ/1aSKz0KRlkIfR22OyOG7uyyy5a7Ocwv3DT5MlyW3xuFHq8s9FD21frvl8L53gelvQZwJkfTHFYmS/B2KmRk=--eWjT7erJISJHzMte--oub4KFXuqRz9kNzY2D0wyA=='
+  config.access_token = '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'
   config.request_timeout = 10 # Optional
 end

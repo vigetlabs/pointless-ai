@@ -26,6 +26,10 @@ export default class extends Controller {
   submit(e) {
     if (this.supplyValue == 0) {
       e.preventDefault()
+    } else {
+      setTimeout(() => {
+        e.target.reset()
+      }, 200)
     }
 
     this.updateSupply()
