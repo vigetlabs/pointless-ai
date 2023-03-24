@@ -2,14 +2,25 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @message = message_thread.messages.build(content: params[:content])
-    message_thread.generate_assistant_reply(@message)
+    if !message_thread.at_limit?
+      @message = message_thread.messages.build(content: params[:content])
 
-    respond_to do |format|
-      if @message.valid? && @message.save
+      respond_to do |format|
+        if @message.valid? && @message.save
+          PointyBearClient.submit_prompt(@message, message_thread.historical_message_contents)
+
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.append(:messages_frame, partial: "messages/message",
+              locals: {message: @message})
+          end
+
+          format.html { redirect_to messages_url }
+        end
+      end
+    else
+      respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:messages_frame, partial: "messages/message",
-            locals: {message: @message})
+          render turbo_stream: turbo_stream.replace(:messages_frame, partial: "messages/limit_reached")
         end
 
         format.html { redirect_to messages_url }
