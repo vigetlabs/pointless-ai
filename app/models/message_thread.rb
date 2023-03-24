@@ -16,7 +16,7 @@ class MessageThread < ApplicationRecord
     hisotircal_messages.map do |content, assistant_reply|
       [
         {role: "user", content: content},
-        {role: "system", content: assistant_reply}
+        {role: "assistant", content: assistant_reply}
       ]
     end.flatten.compact
   end
