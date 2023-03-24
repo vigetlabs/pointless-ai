@@ -1,6 +1,6 @@
 <% honeyMeter = 4 %>
 
-<% if isPointy and honeyMeter = 0 %>
+<% if isPointy and honeyMeter == 0 %>
   <%# pointy with honey %>
   <img class="w-full aspect-square animate-vibrate" src="<%= asset_path( 'pointy-angry.png' ) %>" />
 <% elsif isPointy and honeyMeter > 0 %>
