@@ -20,36 +20,7 @@
   <main class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[196px]">
     <%= turbo_frame_tag "messages_frame", class:"w-full flex flex-col justify-end mt-auto" do %>
       <% if !messages.empty? %>
-        <% messages.each do |val| -%>
-          <%# User Convo Box %>
-          <%= tag.div 'data-controller': 'message', 'hidden': val === messages.last, 'data-message-animate-value': val === messages.last do %>
-            <%# TODO: connect isPointy to responses %>
-            <% isPointy = false %>
-            <% honeyMeter = 4 %>
-
-            <div class="w-full py-36 <%= 'bg-black-overlay' if isPointy %>">
-              <div class="flex gap-24 wrapper">
-                <%# avatar %>
-                <div class="w-48 h-48 shrink-0">
-                  <% if isPointy and honeyMeter = 0 %>
-                    <%# pointy with honey %>
-                    <img class="w-full aspect-square animate-vibrate" src="<%= asset_path( 'pointy-angry.png' ) %>" />
-                  <% elsif isPointy and honeyMeter > 0 %>
-                    <%# pointy no honey %>
-                    <img class="w-full aspect-square" src="<%= asset_path( 'pointy-happy.png' ) %>" />
-                  <% else %>
-                    <%# user %>
-                    <img class="w-full aspect-square" src="<%= asset_path( 'user.png' ) %>" />
-                  <% end %>
-                </div>
-                <%# message %>
-                <div class="break-words markdown mt-6">
-                  <div data-message-target="text"><%= val %></div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+        <%= render partial: "messages/message", collection: messages %>
       <% else %>
         <%# Welcome Splash %>
         <div class="flex flex-col items-center w-full gap-24 pb-32 mb-auto text-center pt-72 wrapper min-h-[calc(100vh-196px)]">
@@ -69,14 +40,13 @@
       </div>
     <% end %>
 
-    <%= form_with url: "/messages/create", data: {'turbo-frame': 'messages_frame', 'action':'honey#submit'}, class: 'wrapper' do |form| %>
-      <label class="relative flex items-center justify-between w-full text-white rounded h-72 bg-primary">
-        <input name="message" type="text" class="w-full h-full pl-20 pr-64 text-2xl bg-transparent border-0 rounded focus:outline-transparent focus:ring-2 focus:ring-primary-hover focus:ring-offset-4 focus:ring-offset-tertiary placeholder:text-white/50" placeholder="Type your question">
-        <button type="submit" class="absolute mr-8 text-4xl -translate-y-4 bg-transparent cursor-pointer right-8 drop-shadow-lg" aria-hidden="true" tabindex="-1">
-          🍯
-        </button>
-      </label>
-    <% end %>
+  <%= form_with url: "/messages/reset", data: {'turbo-frame': 'messages'} do |form| %>
+  <div class="flex justify-center">
+    <button class="text-white">Clear Session</button>
+  </div>
+  <% end %>
+    <%= render "form" %>
+
     <div class="py-32 wrapper">
       <%# TODO: prettify %>
       <p class="text-center text-white">A <strong>Pointless Corp.</strong> Production</p>
