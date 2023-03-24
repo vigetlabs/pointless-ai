@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     message = params[:message]
     messages = session[:messages] || []
@@ -18,6 +20,4 @@ class MessagesController < ApplicationController
       format.html { redirect_to "/" }
     end
   end
-
-  private
 end
