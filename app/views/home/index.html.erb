@@ -1,19 +1,16 @@
 
 <div class="relative flex flex-col h-screen overflow-auto" data-controller="honey">
   <header class="fixed inset-x-0 top-0 flex items-center justify-between h-64 gap-24 bg-gradient-to-t from-tertiary/0 to-tertiary">
-    <h1 class="flex gap-8 px-16 text-3xl font-black shrink-0 animate-font-bounce text-secondary">
+    <h1 class="flex gap-8 px-16 text-3xl shrink-0 animate-font-bounce text-secondary">
       <img class="w-36 aspect-square" src="<%= asset_path( 'pointy-happy.png' ) %>" />
       PointyAI
     </h1>
-
-
     <div class="flex items-center gap-32 shrink-0">
       <% if current_user %>
         <div class="flex text-xl animate-font-bounce text-secondary shrink-0">
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         </div>
       <% end %>
-
       <%= render 'honey' %>
     </div>
   </header>

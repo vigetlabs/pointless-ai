@@ -1,26 +1,37 @@
-<h2>Log in</h2>
+<div class="flex flex-col items-center justify-center min-h-screen gap-32 wrapper text-secondary py-72">
+  <header class="space-y-16">
+    <h1 class="flex flex-col items-center gap-8 px-16 text-5xl shrink-0 animate-font-bounce">
+      <img class="max-w-[150px] aspect-square" src="<%= asset_path( 'pointy-happy.png' ) %>" aria-hidden="true" />
+      PointyAI
+    </h1>
+  </header>
+  <main class="w-full max-w-lg">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'flex flex-col gap-24'}) do |f| %>
+      <% fieldInputStyles = "border-0 rounded text-primary focus:outline-transparent focus:ring-2 focus:ring-secondary focus:ring-offset-4 focus:ring-offset-tertiary placeholder:text-primary/60" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="flex flex-col gap-8">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: fieldInputStyles %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <div class="flex flex-col gap-8">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "current-password", class: fieldInputStyles %>
+      </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center gap-8">
+          <%= f.check_box :remember_me, class: "rounded-sm ring-primary focus:outline-transparent focus:ring-2 focus:ring-secondary focus:ring-offset-4 focus:ring-offset-tertiary checked:bg-primary focus:checked:bg-primary" %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+      <div class="flex flex-wrap items-center gap-24 mt-24">
+        <%= f.submit "Log in", class: "px-32 py-8 bg-primary rounded text-secondary text-lg hover:bg-primary-hover active:bg-primary-active transition-colors duration-200 cursor-pointer" %>
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
 
-<%= render "devise/shared/links" %>
+  </main>
+</div>
+
