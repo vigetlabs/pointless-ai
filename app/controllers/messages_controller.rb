@@ -2,6 +2,11 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    @message = message_thread.messages.build(message_params)
+
+    if @message.save?
+    end
+
     message = params[:message]
     messages = session[:messages] || []
 
@@ -19,5 +24,15 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to "/" }
     end
+  end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:message)
+  end
+
+  def message_thread
+    @message_thread ||= current_user.message_threads.first
   end
 end
