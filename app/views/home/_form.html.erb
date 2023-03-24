@@ -1,0 +1,8 @@
+<%= form_with method: :create, url: messages_path, data: {'turbo-frame': 'messages_frame'}, class: 'wrapper mt-36' do |f| %>
+  <label class="relative flex items-center justify-between w-full text-white rounded h-72 bg-primary">
+    <input name="content" type="text" class="w-full h-full pl-20 pr-64 text-2xl bg-transparent border-0 rounded focus:outline-transparent focus:ring-2 focus:ring-primary-hover focus:ring-offset-4 focus:ring-offset-tertiary placeholder:text-white/50" placeholder="Type your question">
+    <button type="submit" class="absolute mr-8 text-4xl -translate-y-4 bg-transparent cursor-pointer right-8 drop-shadow-lg" aria-hidden="true" tabindex="-1">
+      🍯
+    </button>
+  </label>
+<% end %>

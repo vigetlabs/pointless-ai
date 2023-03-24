@@ -4,7 +4,14 @@ class MessageThread < ApplicationRecord
 
   validates :user_id, presence: true
 
-  def to_s
+  def name
     "#{user.email}-#{created_at.strftime("%Y%m%d%H%M%S")}"
+  end
+
+  def generate_assistant_reply
+    historical_message_contents = messages.order(created_at: :desc).pluck(:content)  # ["", ""]
+
+
+    PointyBearClient.submit_prompt
   end
 end
