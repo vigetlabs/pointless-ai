@@ -19,6 +19,8 @@ rm /usr/local/bundle/bin/wkhtmltoimage \
 rm /usr/local/bundle/bin/wkhtmltopdf \
   && ln -s /usr/local/bin/wkhtmltopdf /usr/local/bundle/bin
 
-# yarn install
+yarn install
+
+rake db:migrate && rake db:seed
 
 exec "$@"
