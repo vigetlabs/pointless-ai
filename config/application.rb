@@ -36,5 +36,8 @@ module PointlessAi
 
     # Dem fonts
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    # Queueing Backend
+    # config.active_job.queue_adapter = :sidekiq
   end
 end
