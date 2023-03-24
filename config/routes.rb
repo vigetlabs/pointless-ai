@@ -4,7 +4,5 @@ Rails.application.routes.draw do
   }
 
   root "home#index"
-
-  post "messages/create", to: "messages#create"
-  post "messages/reset", to: "messages#reset"
+  resources :messages, only: [:create, :destroy]
 end
