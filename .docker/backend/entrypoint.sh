@@ -21,6 +21,6 @@ rm /usr/local/bundle/bin/wkhtmltopdf \
 
 yarn install
 
-rake db:migrate && rake db:seed
+rake db:create && rake db:migrate && rake db:seed
 
 exec "$@"

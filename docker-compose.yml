@@ -35,12 +35,14 @@ services:
         target: /run/host-services/ssh-auth.sock
     ports:
       - "3000:3000"
-    environment:
-      - DB_HOST=postgres
-      - DB_PASSWORD=pointlessai
-      - DB_USER=pointlessai
-      - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
-      - REDIS_URL=redis://redis:6379/1
+    # environment:
+    #   - DB_HOST=postgres
+    #   - DB_PASSWORD=pointlessai
+    #   - DB_USER=pointlessai
+    #   - SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
+    #   - REDIS_URL=redis://redis:6379/1
+    env_file:
+      - ./.docker/backend/.env
     depends_on:
       - postgres
       - redis
