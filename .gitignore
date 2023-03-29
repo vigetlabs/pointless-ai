@@ -37,3 +37,6 @@
 
 # Ignore error files
 yarn-error.log
+
+# Environment
+.env
