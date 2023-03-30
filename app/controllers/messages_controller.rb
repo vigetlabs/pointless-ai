@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
     if !message_thread.at_limit?
@@ -7,8 +8,7 @@ class MessagesController < ApplicationController
 
       respond_to do |format|
         if @message.valid? && @message.save
-          # PointyBearClient.submit_prompt(@message, message_thread.historical_message_contents)
-          @message.update(assistant_reply: "This is a test reply from the assistant")
+          ProcessUserPrompt.perform_later message_thread
 
           format.turbo_stream
           format.html { redirect_to messages_url, notice: "Message was successfully created." }

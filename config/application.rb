@@ -39,5 +39,7 @@ module PointlessAi
 
     # Queueing Backend
     # config.active_job.queue_adapter = :sidekiq
+
+    config.autoload_paths << "#{Rails.root}/lib"  # not sure if I need this
   end
 end
