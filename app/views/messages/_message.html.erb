@@ -1,4 +1,6 @@
 <%# User Convo Box %>
+<%= turbo_stream_from dom_id(message) %>
+
 <%= tag.div 'data-controller': 'message', 'hidden': false, 'data-message-animate-value': false do %>
   <%# TODO bg-black/40 WHEN BEAR RESPONSE %>
   <div class="w-full py-36">
