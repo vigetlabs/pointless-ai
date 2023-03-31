@@ -1,0 +1,15 @@
+<%= tag.div 'data-controller': 'message', 'hidden': false, 'data-message-animate-value': true do %>
+  <%# TODO bg-black/40 WHEN BEAR RESPONSE %>
+  <div class="w-full py-36 bg-black/40">
+    <div class="flex gap-24 wrapper">
+      <%# avatar %>
+      <div class="w-40 h-40 rounded-full bg-secondary shrink-0">
+        <%= render partial: 'messages/avatar', locals: { message: message, isPointy: true } %>
+      </div>
+      <%# message %>
+      <div class="break-words markdown">
+        <div data-message-target="text"><%= message.assistant_reply %></div>
+      </div>
+    </div>
+  </div>
+<% end %>
