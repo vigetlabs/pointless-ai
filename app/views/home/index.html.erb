@@ -1,3 +1,4 @@
+<%= turbo_stream_from current_user, "messages" %>
 
 <div class="relative flex flex-col h-screen overflow-auto" data-controller="honey">
   <header class="fixed inset-x-0 top-0 flex items-center justify-between h-64 gap-24 bg-gradient-to-t from-tertiary/0 to-tertiary">
@@ -19,7 +20,9 @@
   <main class="flex h-full flex-col items-center scroll-smooth scrollbar-default text-lg font-thin leading-10 text-white overflow-auto pb-[216px]">
     <div id="splash" class="m-auto empty:hidden"><% if messages.empty? %><%= render partial: "splash" %><% end %></div>
 
-    <div id="messages" class="flex flex-col justify-end w-full mt-auto empty:hidden"><%= render partial: "messages/message", collection: messages %></div>
+    <div id="messages" class="flex flex-col justify-end w-full mt-auto empty:hidden">
+      <%= render partial: "messages/message", collection: messages, locals: {animate_reply: false} %>
+    </div>
   </main>
 
   <%# User input %>

@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
     if !message_thread.at_limit?
@@ -26,8 +25,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    # Reset our session and redirect to home
-    # session[:messages] = []
+    # Temporary: deletes all messages from users message thread
     message_thread.messages.destroy_all
     respond_to do |format|
       format.html { redirect_to "/" }
